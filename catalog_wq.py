@@ -6,6 +6,8 @@ from pyproj import Proj, transform
 import pandas as pd
 import io
 
+#Auth Token - should have a long lifetime
+token = "mytoken"
 #set static json body values and permsissions
 body={}
 pem1={}
@@ -86,4 +88,4 @@ for i in range(0,site_count):
     body['geospatial']= True;
     with open('sites/'+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+'.json', 'w') as outfile:
         json.dump(body, outfile)
-    call("metadata-addupdate -V -F sites/"+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+".json", shell=True)
+    call("metadata-addupdate -z "+token+"-V -F sites/"+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+".json", shell=True)

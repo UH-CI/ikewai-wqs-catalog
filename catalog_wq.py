@@ -88,4 +88,4 @@ for i in range(0,site_count):
     body['geospatial']= True;
     with open('sites/'+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+'.json', 'w') as outfile:
         json.dump(body, outfile)
-    call("metadata-addupdate -z "+token+"-V -F sites/"+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+".json", shell=True)
+    call("metadata-addupdate -z "+token+" -V -F sites/"+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+".json", shell=True)

@@ -12,7 +12,7 @@ import multiprocessing
 # perform on each input. For example...
 num_cores = 3
 #Auth Token - should have a long lifetime
-token = "mytoken"
+token = "bea27618b9039f18ce5ea472944ca72"
 #set static json body values and permsissions
 body={}
 pem1={}
@@ -95,6 +95,6 @@ def catalogSite(i):
     body['geospatial']= True;
     with open('sites/'+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+'.json', 'w') as outfile:
         json.dump(body, outfile)
-    call("metadata-addupdate -z "+token+"-V -F sites/"+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+".json", shell=True)
+    call("metadata-addupdate -z "+token+" -V -F sites/"+r.json()["features"][i]['properties']['MonitoringLocationIdentifier']+".json", shell=True)
 input = range(site_count)
 results = Parallel(n_jobs=num_cores)(delayed(catalogSite)(i) for i in input)
